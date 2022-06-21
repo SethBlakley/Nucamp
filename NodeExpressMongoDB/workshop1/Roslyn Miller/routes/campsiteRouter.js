@@ -7,6 +7,7 @@ campsiteRouter.route('/')
     res.setHeader('Content-Type', 'text/plain');
     next();
 })
+
 .get((req, res) => {
     res.end('Will send all the campsites to you');
 })
@@ -27,20 +28,18 @@ campsiteRouter.route('/:campsiteId')
     res.setHeader('Content-Type', 'text/plain');
     next();
 })
+
 .get((req, res) => {
-    res.end(`Will send details of the campsites: ${req.params.campsiteId} to you`);
+    res.end('Will send all the campsites to you');
 })
 .post((req, res) => {
-    res.statusCode = 403;
-    res.end(`POST operation not supported on /campsites/${req.params.campsiteId}`);
+    res.end(`Will add the campsite: ${req.body.name} with description: ${req.body.description}`);
 })
 .put((req, res) => {
     res.statusCode = 403;
-    res.end(`Will update the campsite: ${req.body.name}
-        with description: ${req.body.description}`);
+    res.end('PUT operation not supported on /campsites');
 })
 .delete((req, res) => {
-    res.end(`Deleting campsite: ${req.params.campsiteId}`);
+    res.end('Deleting all campsites');
 });
-
 module.exports = campsiteRouter;

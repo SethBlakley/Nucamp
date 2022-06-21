@@ -1,21 +1,22 @@
 const express = require("express");
 const campsiteRouter = express.Router();
+// const campsiteIdRouter = express.Router();
 
+//all routing methods take a path as the first parameter; any http request to this path will trigger this method
 campsiteRouter
   .route("/")
   .all((req, res, next) => {
+    // arguments include a path, callback function
     res.statusCode = 200;
-    res.header("Content-Type", "text/plain");
-    next();
+    res.setHeader("Content-Type", "text/plain");
+    next(); // next passes control of the routing to the next relevant routing method after this one, otherwise it would just stop here
   })
-
   .get((req, res) => {
     res.end("Will send all the campsites to you");
   })
-
   .post((req, res) => {
     res.end(
-      `Will add the campsite: ${req.body.name} with description ${req.body.description}`
+      `Will add campsite: ${req.body.name} with description: ${req.body.description}`
     );
   })
   .put((req, res) => {
@@ -30,13 +31,11 @@ campsiteRouter
   .route("/:campsiteId")
   .all((req, res, next) => {
     res.statusCode = 200;
-    res.header("Content-Type", "text/plain");
+    res.setHeader("Content-Type", "text-plain");
     next();
   })
   .get((req, res) => {
-    res.end(
-      `Will send details of the campsite: ${req.params.campsiteId} to you`
-    );
+    res.end(`Will send campsite ${req.params.campsiteId} to you`);
   })
   .post((req, res) => {
     res.statusCode = 403;
@@ -45,12 +44,10 @@ campsiteRouter
     );
   })
   .put((req, res) => {
-    res.write(`Updating the campsite: ${req.params.campsiteId}\n`);
-    res.end(`Will update the campsite: ${req.body.name}
-        with description: ${req.body.description}`);
+    res.end(`Updating campsite ${req.params.campsiteId}`);
   })
   .delete((req, res) => {
-    res.end(`Deleting campsite: ${req.params.campsiteId}`);
+    res.end(`Deleting campsite ${req.params.campsiteId}`);
   });
 
 module.exports = campsiteRouter;
