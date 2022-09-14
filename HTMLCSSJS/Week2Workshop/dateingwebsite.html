@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head><link rel="stylesheet" href="css/dateingwebsite.css"
+    <title>
+  
+    </title>
+    <style>
+        body {
+            font-family: Verdana, Arial, sans-serif;
+        }
+        p {
+            margin: "0";
+        }
+        legend {
+            background: purple;
+            border-radius: 10px;
+            color: white;
+            padding: 12px;
+        }
+
+        fieldset {
+            background: lavender;
+            border: 10px solid darkblue;
+            border-radius: 20px;
+            margin-bottom: 10px;
+            width: 720px;
+        }
+        div {
+            margin: 10px;
+         
+            
+        }
+
+        label {
+            display: inline-block;
+            text-align: right;
+            vertical-align: top;
+            width: 200px;
+        }
+
+        input[type="submit"]+label, input[type="checkbox"]+label {
+            width: auto;
+           
+        }
+
+        input {
+            text-align: right;
+        }
+        .range-caption {
+            background: darkcyan;
+            color: white;
+            padding: 6px;
+            text-align: center;
+            border-radius: 10px;
+            font-size: 20px;
+        }
+      
+        div:hover {
+            color: blue;
+        }
+
+        input[type="submit"] {
+            background-color: darkcyan;
+            border-radius: 10px;
+            color: white;
+            font-size: 20px;
+            padding: 12px;
+        }
+
+        
+
+        
+      
+        
+    </style>
+</head>
+<body> 
+    <h1>Enter Your Details For Our Dating Website</h1>
+    <script src="https://url.nucamp.co/datingjs"></script>
+</body>
+<formaction="https://us-central1-nucamp-production.cloudfunctions.net/post/formdata" method="post" enctype="multipart/form-data"></formaction>
+    <fieldset>
+        <legend>Your Face</legend>
+        <div>
+            <label for="avatar">Upload Your Image</label>
+            <input type="file" id="avatar" required>
+         
+        </div>
+        <p>Image Preview:</p>
+        <img id="preview" width="500">
+         
+
+        
+    </fieldset>
+    <fieldset>
+        <legend>Your Details:</legend>
+
+        <div>
+            <label for="name">Name:</label>
+        <input type="text" id="woman" placeholder="Your full name" required>
+        </div>
+
+        <div>
+            <label>Gender</label>
+            <input type="radio" id="woman" name="gender" value="woman" required>
+            <lable for="woman">Woman</lable>
+            <input type="radio" id="man" name="gender" value="man">
+            <lable for="man">Man</lable>
+            <input type="radio" id="nonbinary" name="gender" value="nonbinary">
+            <lable for="nonbinary">Nonbinary</lable>
+            <input type="radio" id="other" name="gender" value="other">
+            <label for="other">Other</label>
+        </div>        
+
+        <div>
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age">
+        </div>
+        <div>
+            <label for="color">Favorite Color:</label>
+            <input type="color" id="color" name="color">
+        </div>
+        <div>
+            <label for="country">Country:</label>
+            <select id="country" name="country">Choose Country
+            <option value="brazil">Brazil</option>
+            <option value="france">France</option>
+            <option value="japan">Japan</option>
+            <option value="libya">Libya</option>
+            <option value="usa">USA</option>
+            </select>
+        </div>
+        <div>
+            <label for="salary">Salary:</label>
+            <span class="range-caption">Poor</span>
+            <input type="range" id="salary" name="salary" min="0" max="100" value="50">
+            <span class="range-caption">Rich</span>
+
+        </div>
+
+       
+
+    </fieldset>
+    <fieldset>
+        <legend>Contact Information</legend>
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+        </div>
+        <div>
+            <label for="phone">Phone:</label>
+            <input type="phone" id="phone" name="phone">
+        </div>
+        <div>
+            <label for="address">Address:</label>
+            <textarea cols="40" id="address" name="address"></textarea>
+        </div>
+        <div>
+            <label for="contact">Contact Methods:</label>
+            <input type="checkbox" name="contact" id="emailCheckbox" value="email">
+            <label for="emailCheckbox">Email</label>
+            <input type="checkbox" name="contact" id="phoneCheckbox" value="phone">
+            <label for="phoneCheckbox">Phone</label>
+        </div>
+    </fieldset>
+    <div>
+        <input type="submit">
+    </div>
+</form>
+</head>
+<body>
+
+
+</body>
+</html>
