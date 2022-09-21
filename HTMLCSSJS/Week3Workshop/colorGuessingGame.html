@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Guessing Game</title>
+</head>
+<body>
+    <h1>Color Guessing Game</h1>
+    <button type="button" onclick="runGame()">Start Game</button>
+    <script>
+        const COLORS_ARRAY = ['magenta', 'orange', 'red', 'white', 'yellow', 'blue', 'cyan', 'gold', 'gray', 'green'];
+        COLORS_ARRAY.sort();
+
+    function runGame() {
+        let guess = "";
+        let correct = false;
+        let numTries = 0
+        const targetIndex = Math.floor(Math.random() * 10) + 1;
+        const target = COLORS_ARRAY[targetIndex];
+        console.log(target);
+
+        do {
+            guess = prompt("I am thinking of one of these colors:\n\n" + COLORS_ARRAY.join(", ") + "\n\nWhat color am I thinking of?\n")
+            numTries +=1
+            if(guess === null) {
+                alert("You ended the game.");
+                return;
+            }
+            guess = guess.toLowerCase();
+            correct = checkGuess(guess, target, numTries)
+        } while (!correct)
+
+        if(numTries === 1) {
+            alert("Hole in one! You guessed correctly after " + numTries + " try!")
+        } else {
+            alert("You have guessed the correct color in " + numTries + " tries!")
+        }
+        document.body.style.background = guess;
+    }
+
+        function checkGuess(guess, target, numTries) {
+            let correct = false
+            if (!COLORS_ARRAY.includes(guess)) {
+                alert("Your guess is not one of the options.\n\nTry Count: " + numTries)
+            } else if(guess > target) {
+                alert("Your guess is alphabetically higher than the color.\n\nTry Count: " + numTries)
+            } else if(guess < target) {
+                alert("Your guess is alphabetically lower than the color.\n\nTry Count: " + numTries)
+            } else {
+                correct = true
+            }
+            return correct
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Color Guessing Game</title>
+  </head>
+  <body>
+    <h1>Color Guessing Game</h1>
+    <button type="button" onclick="runGame()">Start Game</button>
+
+    <script>
+      const COLORS_ARRAY = [
+        "white",
+        "cyan",
+        "gold",
+        "gray",
+        "green",
+        "magenta",
+        "orange",
+        "red",
+        "blue",
+        "yellow",
+      ];
+      COLORS_ARRAY.sort();
+      const arrayJoin = COLORS_ARRAY.join(", ");
+      let numTries = 0;
+
+      function runGame() {
+        let guess = "";
+        let correct = false;
+        let numTries = 0;
+
+        const targetIndex = Math.floor(Math.random() * 9);
+        const target = COLORS_ARRAY[targetIndex];
+        console.log("Color = : " + target);
+
+        do {
+          guess = prompt(
+            "I am thinking of one of these colors:\n\n" +
+              arrayJoin +
+              "\n\nWhat color am I thinking of?\n"
+          ).toLowerCase();
+          if (guess === null) {
+            alert("We hope you had fun!");
+            return;
+          }
+          correct = checkGuess(guess, target);
+          numTries += 1;
+        } while (!correct);
+        document.body.style.background = guess;
+        alert(
+          "Congratulations! It took you " +
+            numTries +
+            " guesses to answer correctly!"
+        );
+      }
+
+      function checkGuess(guess, target) {
+        let correct = false;
+        numTries += 1;
+
+        if (!COLORS_ARRAY.includes(guess)) {
+          alert(
+            "Sorry, try again! \n\nGive me another color! \n\nYou've made " +
+              numTries +
+              " attempt\(s\)."
+          );
+        } else if (guess > target) {
+          alert(
+            "That's not it! Hint, try lower!  \n\nYou've made " +
+              numTries +
+              " attempt\(s\)."
+          );
+        } else if (guess < target) {
+          alert(
+            "Nope! Hint, try higher!  \n\nYou've made " +
+              numTries +
+              " attempt\(s\)."
+          );
+        } else {
+          correct = true;
+        }
+        return correct;
+      }
+    </script>
+  </body>
+</html>

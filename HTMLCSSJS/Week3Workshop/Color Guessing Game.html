@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Color Guessing Game</title>
+  </head>
+  <body>
+    <h1>Color Guessing Game</h1>
+    <button type="button" onclick="runGame()">Start Game></button>
+    <script>
+      const COLORS_ARRAY = [
+        "blue",
+        "cyan",
+        "gold",
+        "gray",
+        "green",
+        "magenta",
+        "orange",
+        "red",
+        "white",
+        "yellow",
+      ];
+
+      function runGame() {
+        let guess = "";
+        let correct = false;
+        const targetIndex = Math.floor(Math.random() * 10) + 1;
+        const target = COLORS_ARRAY[targetIndex];
+        let numTries = 0;
+        console.log(target);
+
+        do {
+          guess = prompt(
+            "I am thinking of one of these colors:\n\n" +
+              COLORS_ARRAY +
+              "\n\nWhat color am I thinking of?\n"
+          );
+
+          if (guess === null) {
+            alert("please try again");
+          }
+          numTries += 1;
+          correct = checkGuess(guess.toLowerCase(), target);
+        } while (!correct);
+
+        alert(
+          "Congrats you chose the correct color after " + numTries + " tries!"
+        );
+        document.body.style.background = guess;
+      }
+
+      function checkGuess(guess, target) {
+        let correct = false;
+
+        if (!COLORS_ARRAY.includes(guess)) {
+          alert(
+            "This color is not on the list! This is try number " +
+              numTries +
+              "!"
+          );
+        } else if (guess > target) {
+          alert(
+            "The color is a higher target! This is try number " + numTries + "!"
+          );
+        } else if (guess < target) {
+          alert("The color is a lower target! Please try again");
+        } else {
+          correct = true;
+        }
+        return correct;
+      }
+    </script>
+  </body>
+</html>
